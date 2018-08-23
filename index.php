@@ -25,36 +25,51 @@
 <div class="container">
   <h3 class="text-center">Discounts</h3>
 
-    <table class="table table-hover" style="margin-top:50px">
+    <div class="form-group" style="width:200px;float:right;margin-bottom:50px">
+      <label for="sel1">Industry</label>
+      <select class="form-control" id="industrySelect" onchange="industrySelected(this.value)">
+        <option value="">All</option>
+        <option value="home">Home</option>
+        <option value="electronics">Electronics</option>
+      </select>
+    </div>
+
+    <table class="table table-hover" style="margin-top:50px" id="myTable">
         <thead>
         <tr>
-            <th>Company Name</th>
-            <th>Promotion Name</th>
+            <th class="text-center">Image</th>
+            <th>Promotion Info.</th>
             <th>Description</th>
-            <th>Start Date/Time</th>
-            <th>End Date/Time</th>
             <th>Industry</th>
         </tr>
         </thead>
         <tbody>
 
         <?php
-            $sql = " SELECT * FROM discountsInfo ";
+            $sql = " SELECT * FROM discountsInfo ORDER BY startDateTime ASC ";
             $result = mysqli_query($conn, $sql);
             while($row = mysqli_fetch_assoc($result)){
+                $id = trim($row["id"]);
+                $image = trim($row["image"]);
                 $companyName = trim($row["companyName"]);
                 $discountName = trim($row["discountName"]);
                 $discountDescription = trim($row["discountDescription"]);
-                $startDateTime = $row["startDateTime"];
-                $endDateTime = $row["endDateTime"];
+                $startDateTime = date_create($row["startDateTime"]);
+                $startDateTime_formatted = date_format($startDateTime, 'm/d/Y h:i:sa');
+                $endDateTime = date_create($row["endDateTime"]);
+                $endDateTime_formatted = date_format($endDateTime, 'm/d/Y h:i:sa');
                 $industry = trim($row["industry"]);
 
                 echo "<tr>";
-                    echo "<td>$companyName</td>";
-                    echo "<td>$discountName</td>";
-                    echo "<td>$discountDescription</td>";
-                    echo "<td>$startDateTime</td>";
-                    echo "<td>$endDateTime</td>";
+                    echo "<td class='text-center'><img src='img/$image' style='max-width:200px'></td>";
+                    echo "<td style='vertical-align: middle;'>";
+                        echo "<p><strong>Company</strong> $companyName</p>";
+                        echo "<p><strong>Promotion</strong> $discountName</p>";
+                        echo "<p><strong>Starts</strong> $startDateTime_formatted</p>";
+                        echo "<p><strong>Ends</strong> $endDateTime_formatted</p>";
+                        echo "<p><strong>Industry</strong> $industry</p>";
+                    echo "</td>";
+                    echo "<td style='vertical-align: middle;'>$discountDescription</td>";
                     echo "<td>$industry</td>";
                 echo "</tr>";
             }
@@ -64,6 +79,23 @@
     </table>
 
 </div>
+
+ <script>
+$(document).ready(function(){
+
+
+    
+
+
+});
+
+function industrySelected(str){
+    var value = str.toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+}
+</script> 
 
 </body>
 </html>
