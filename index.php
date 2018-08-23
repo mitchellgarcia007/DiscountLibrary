@@ -81,20 +81,12 @@
 </div>
 
  <script>
-$(document).ready(function(){
-
-
-    
-
-
-});
-
-function industrySelected(str){
-    var value = str.toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-}
+    function industrySelected(str){
+        var value = str.toLowerCase();
+        $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    }
 </script> 
 
 </body>
