@@ -46,7 +46,6 @@
         <tr>
             <th class="text-center">Image</th>
             <th>Promotion Info.</th>
-            <th>Description</th>
             <th class="hidden">Industry</th>
         </tr>
         </thead>
@@ -68,15 +67,18 @@
                 $industry = trim($row["industry"]);
 
                 echo "<tr>";
-                    echo "<td class='text-center'><img src='img/$image' style='max-width:200px'></td>";
-                    echo "<td>";
+                    echo "<td class='text-center hidden-xs' style='vertical-align: middle;'><img src='img/$image' style='max-width:200px'></td>";
+                    echo "<td style='vertical-align: middle;'>";
+                        echo "<p class='visible-xs'><img src='img/$image' style='max-width:200px;display:block;margin:20px auto'></p>";
+                        echo "<a href='#' class='btn btn-primary visible-xs' role='button' style='width:150px;margin:auto;margin-bottom:20px'>Go to Site</a>";
                         echo "<p><strong>Company:</strong> $companyName</p>";
                         echo "<p><strong>Promotion:</strong> $discountName</p>";
                         echo "<p><strong>Starts:</strong> $startDateTime_formatted</p>";
                         echo "<p><strong>Ends:</strong> $endDateTime_formatted</p>";
+                        echo "<p><strong>Instructions:</strong> $discountDescription</p>";
                         echo "<p><strong>Industry:</strong> $industry</p>";
+                        echo "<a href='#' class='btn btn-primary hidden-xs' role='button'>Go to Site</a>";
                     echo "</td>";
-                    echo "<td><p><strong>Description:</strong></p>$discountDescription</td>";
                     echo "<td class='hidden'>$industry</td>";
                 echo "</tr>";
             }
