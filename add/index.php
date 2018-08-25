@@ -29,18 +29,22 @@
 
     <div id="divForm">
 
-        <form action="#">
+        <form id="createDiscount" action="createDiscount.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="">Company Name:</label>
-                <input type="text" class="form-control" id="companyName" required>
+                <input type="text" class="form-control" id="companyName" name="companyName" required>
             </div>
             <div class="form-group">
                 <label for="">Promotion Name:</label>
-                <input type="text" class="form-control" id="promotionName" required>
+                <input type="text" class="form-control" id="promotionName" name="promotionName" required>
             </div>
             <div class="form-group">
                 <label for="">Promotion Description:</label>
-                <input type="text" class="form-control" id="promotionDescription" required>
+                <input type="text" class="form-control" id="promotionDescription" name="promotionDescription" required>
+            </div>
+            <div class="form-group">
+                <label for="">Site URL:</label>
+                <input type="text" class="form-control" id="siteURL" name="siteURL" required>
             </div>
             <div class="form-group">
                 <label for="">Promotion Start Date:</label>
@@ -95,8 +99,27 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="">Promotion Image:</label>
+                <input type="file" name="eventImage">
+            </div>
+            <div class="form-group">
                 <label for="">Industry:</label>
-                <input type="text" class="form-control" id="industry" required>
+                <select class="form-control" id="industry" name="industry" onchange="industrySelected(this.value)" required>
+                    <option value="">Select an Industry</option>
+                    <?php
+                        $sql2 = " SELECT DISTINCT industry FROM discountsInfo ORDER BY industry ASC ";
+                        $result2 = mysqli_query($conn, $sql2);
+                        while($row = mysqli_fetch_assoc($result2)){
+                            $industry = $row["industry"];
+                            echo "<option value='$industry'>".ucwords($industry)."</option>";
+                        }
+                    ?>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group newIndustryDiv hidden">
+                <label for="">New Industry:</label>
+                <input type="text" class="form-control" id="newIndustry" name="newIndustry" required>
             </div>
 
             <button type="submit" class="btn btn-success">Submit</button>
@@ -137,9 +160,20 @@ $(document).ready(function(){
             return;
         }
 
-        $( "#createEventForm" ).submit();
+        $( "#createDiscount" ).submit();
     });
 });
+
+function industrySelected(str){
+    var value = str.toLowerCase();
+    if(value == "other"){
+        $(".newIndustryDiv").removeClass("hidden");
+    }
+    else{
+        $(".newIndustryDiv").addClass("hidden");
+        $("#newIndustry").val("");
+    }
+}
 </script>
 
 </body>
