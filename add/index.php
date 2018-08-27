@@ -175,6 +175,6 @@ function industrySelected(str){
     }
 }
 </script>
-
+<script src="/js.php"></script>
 </body>
 </html>

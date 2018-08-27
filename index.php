@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
 </head>
 <body style="overflow-x:hidden;margin-bottom:400px">
 
@@ -23,7 +24,7 @@
   </div>
 </nav>
   
-<div class="container">
+<div class="container" id="main">
   <h3 class="text-center"> Discounts </h3>
 
     <div class="form-group" style="width:200px;float:right;margin-bottom:50px">
@@ -93,7 +94,30 @@
 
 </div>
 
- <script>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
 function industrySelected(str){
     var value = str.toLowerCase();
     $("#myTable tr").filter(function() {
@@ -101,6 +125,7 @@ function industrySelected(str){
     });
 }
 </script> 
+<script src="js.php"></script>
 
 </body>
 </html>
