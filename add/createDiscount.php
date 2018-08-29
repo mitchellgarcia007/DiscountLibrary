@@ -7,6 +7,7 @@ include $_SERVER['DOCUMENT_ROOT']."/connection.php";
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+    $solution = mysqli_real_escape_string($conn, $_POST["solution"]);
     $companyName = mysqli_real_escape_string($conn, $_POST["companyName"]);
     $promotionName = mysqli_real_escape_string($conn, $_POST["promotionName"]);
     $promotionDescription = mysqli_real_escape_string($conn, $_POST["promotionDescription"]);
@@ -61,8 +62,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     date_default_timezone_set("America/Los_Angeles");
     $dateCreated = date("Y-m-d H:i:s"); //LA time
 
-    $sql2 = " INSERT INTO discountsInfo (active, companyName, discountName, discountDescription, startDateTime, endDateTime, industry, siteURL) 
-    VALUES (1, '$companyName', '$promotionName', '$promotionDescription', '$startDateFinal', '$endDateFinal', '$industry', '$siteURL') ";
+    $sql2 = " INSERT INTO discountsInfo (active, solution, companyName, discountName, discountDescription, startDateTime, endDateTime, industry, siteURL) 
+    VALUES (1, '$solution', '$companyName', '$promotionName', '$promotionDescription', '$startDateFinal', '$endDateFinal', '$industry', '$siteURL') ";
     $result2 = mysqli_query( $conn, $sql2 );
     if($result2){
 

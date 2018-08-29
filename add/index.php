@@ -31,6 +31,25 @@
 
         <form id="createDiscount" action="createDiscount.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
+                <label for="">Solution:</label>
+                <select class="form-control" id="solution" name="solution" onchange="solutionSelected(this.value)" required>
+                    <option value="">Select a Solution</option>
+                    <?php
+                        $sql2 = " SELECT DISTINCT solution FROM discountsInfo ORDER BY solution ASC ";
+                        $result2 = mysqli_query($conn, $sql2);
+                        while($row = mysqli_fetch_assoc($result2)){
+                            $solution = $row["solution"];
+                            echo "<option value='$solution'>".ucwords($solution)."</option>";
+                        }
+                    ?>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group newSolutionDiv hidden">
+                <label for="">New Solution:</label>
+                <input type="text" class="form-control" id="newSolutionDiv" name="newSolutionDiv" required>
+            </div>
+            <div class="form-group">
                 <label for="">Company Name:</label>
                 <input type="text" class="form-control" id="companyName" name="companyName" required>
             </div>
@@ -39,7 +58,7 @@
                 <input type="text" class="form-control" id="promotionName" name="promotionName" required>
             </div>
             <div class="form-group">
-                <label for="">Promotion Description:</label>
+                <label for="">Promotion Instructions:</label>
                 <input type="text" class="form-control" id="promotionDescription" name="promotionDescription" required>
             </div>
             <div class="form-group">
@@ -172,6 +191,16 @@ function industrySelected(str){
     else{
         $(".newIndustryDiv").addClass("hidden");
         $("#newIndustry").val("");
+    }
+}
+function solutionSelected(str){
+    var value = str.toLowerCase();
+    if(value == "other"){
+        $(".newSolutionDiv").removeClass("hidden");
+    }
+    else{
+        $(".newSolutionDiv").addClass("hidden");
+        $("#newSolution").val("");
     }
 }
 </script>
