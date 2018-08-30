@@ -8,6 +8,13 @@ include $_SERVER['DOCUMENT_ROOT']."/connection.php";
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $solution = mysqli_real_escape_string($conn, $_POST["solution"]);
+    $solution = strtolower($solution);
+    $newSolution = mysqli_real_escape_string($conn, $_POST["newSolution"]);
+    $newSolution = strtolower($newSolution);
+    if($newSolution){
+        $solution = $newSolution;
+    }
+
     $companyName = mysqli_real_escape_string($conn, $_POST["companyName"]);
     $promotionName = mysqli_real_escape_string($conn, $_POST["promotionName"]);
     $promotionDescription = mysqli_real_escape_string($conn, $_POST["promotionDescription"]);
@@ -20,11 +27,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $endDateHour = mysqli_real_escape_string($conn, $_POST["endDateHour"]);
     $endDateMinute = mysqli_real_escape_string($conn, $_POST["endDateMinute"]);
     $endDateAMPM = mysqli_real_escape_string($conn, $_POST["endDateAMPM"]);
+
     $industry = mysqli_real_escape_string($conn, $_POST["industry"]);
     $industry = strtolower($industry);
     $newIndustry = mysqli_real_escape_string($conn, $_POST["newIndustry"]);
     $newIndustry = strtolower($newIndustry);
-
     if($newIndustry){
         $industry = $newIndustry;
     }

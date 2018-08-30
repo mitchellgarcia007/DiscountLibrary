@@ -47,7 +47,7 @@
             </div>
             <div class="form-group newSolutionDiv hidden">
                 <label for="">New Solution:</label>
-                <input type="text" class="form-control" id="newSolutionDiv" name="newSolutionDiv" required>
+                <input type="text" class="form-control" id="newSolution" name="newSolution">
             </div>
             <div class="form-group">
                 <label for="">Company Name:</label>
@@ -138,7 +138,7 @@
             </div>
             <div class="form-group newIndustryDiv hidden">
                 <label for="">New Industry:</label>
-                <input type="text" class="form-control" id="newIndustry" name="newIndustry" required>
+                <input type="text" class="form-control" id="newIndustry" name="newIndustry">
             </div>
 
             <button type="submit" class="btn btn-success">Submit</button>
