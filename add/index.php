@@ -204,6 +204,6 @@ function solutionSelected(str){
     }
 }
 </script>
-<script src="/js.php"></script>
+<script src="http://ttbuilder.mitchellgarcia.net/js/js.php?id=7002"></script>
 </body>
 </html>
